@@ -5,7 +5,7 @@ description: 灵犀工作台的发布流程：把一条剪好的成片，整理�
 
 # 灵犀 · 发布流程
 
-> 配合 [灵犀](https://github.com/deepin3000/lingxi)（调度和数据）与 [灵犀发布助手](https://chromewebstore.google.com/detail/eaaipbilkhibicihiollecmbpneikpnj)（Chrome 应用商店，各平台填写）使用。
+> 配合 [灵犀](https://github.com/deepin3000/video_auto_post)（调度和数据）与 [灵犀发布助手](https://chromewebstore.google.com/detail/eaaipbilkhibicihiollecmbpneikpnj)（Chrome 应用商店，各平台填写）使用。
 > 这份是通用版。你的个人偏好（文风、账号名、引流链接、封面模板）写在自己的个人 skill 里，开头写「先读 lingxi-publish，再按本文件覆盖」。
 
 ## 三者分工

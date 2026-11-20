@@ -6,5 +6,5 @@
   "license": "MIT",
   "engines": { "node": ">=22.5" },
   "bin": { "lingxi": "src/hub.mjs" },
-  "repository": { "type": "git", "url": "https://github.com/deepin3000/lingxi.git" }
+  "repository": { "type": "git", "url": "https://github.com/deepin3000/video_auto_post.git" }
 }

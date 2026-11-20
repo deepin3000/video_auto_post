@@ -1,5 +1,5 @@
 # 灵犀 · Windows 一键安装
-#   powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/deepin3000/lingxi/main/scripts/install-windows.ps1 | iex"
+#   powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/deepin3000/video_auto_post/main/scripts/install-windows.ps1 | iex"
 # 做的事（与 scripts/install.sh 逐步对应）：检查 git 和 Node（≥22.5，缺了用 winget 装）→
 #   把灵犀和灵犀发布助手克隆到 %USERPROFILE%\lingxi\ → 拷双击启动器 → 接上发布 skill → 运行安装向导
 # 换目录：先设环境变量 LINGXI_HOME，如 $env:LINGXI_HOME = 'D:\lingxi' 再运行

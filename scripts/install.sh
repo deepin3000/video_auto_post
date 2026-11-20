@@ -1,6 +1,6 @@
 #!/bin/bash
 # 灵犀一行安装：
-#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/deepin3000/lingxi/main/scripts/install.sh)"
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/deepin3000/video_auto_post/main/scripts/install.sh)"
 # 做的事：检查 git 和 Node（≥22.5）→ 把灵犀下载到 ~/lingxi/ → 运行安装向导（灵犀发布助手从 Chrome 应用商店装）
 # 换目录：LINGXI_HOME=~/somewhere bash -c "$(curl -fsSL …)"
 set -e

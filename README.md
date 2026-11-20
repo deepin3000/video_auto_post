@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/macOS-only-1c1a16?logo=apple" alt="macOS" />
   <img src="https://img.shields.io/badge/Node.js-%E2%89%A5%2022.5-5FA04E?logo=nodedotjs&logoColor=white" alt="Node 22.5+" />
   <a href="https://chromewebstore.google.com/detail/eaaipbilkhibicihiollecmbpneikpnj"><img src="https://img.shields.io/badge/Chrome-灵犀发布助手-F2B21B?logo=googlechrome&logoColor=white" alt="灵犀发布助手" /></a>
-  <a href="https://github.com/deepin3000/lingxi/stargazers"><img src="https://img.shields.io/github/stars/deepin3000/lingxi?style=social" alt="Stars" /></a>
+  <a href="https://github.com/deepin3000/video_auto_post/stargazers"><img src="https://img.shields.io/github/stars/deepin3000/video_auto_post?style=social" alt="Stars" /></a>
 </p>
 
 <p align="center">
@@ -26,8 +26,8 @@
 
 ## 看它跑一遍
 
-<p align="center"><img src="https://github.com/deepin3000/lingxi/releases/download/media/lingxi-publish.gif" alt="一期视频的发布流程：Agent 写文案 → 进分发计划 → 插件分批填写各平台 → 国内平台你来点发布 → 到点回填链接" /></p>
-<p align="center"><sub>一期视频从写文案到上线（47 秒，各平台发布页为示意，数据是作者第 4 期的真实文案和封面）· <a href="https://github.com/deepin3000/lingxi/releases/download/media/lingxi-publish.mp4">高清 MP4</a></sub></p>
+<p align="center"><img src="https://github.com/deepin3000/video_auto_post/releases/download/media/lingxi-publish.gif" alt="一期视频的发布流程：Agent 写文案 → 进分发计划 → 插件分批填写各平台 → 国内平台你来点发布 → 到点回填链接" /></p>
+<p align="center"><sub>一期视频从写文案到上线（47 秒，各平台发布页为示意，数据是作者第 4 期的真实文案和封面）· <a href="https://github.com/deepin3000/video_auto_post/releases/download/media/lingxi-publish.mp4">高清 MP4</a></sub></p>
 
 <p align="center"><img src="docs/screenshots/board.jpg" alt="灵犀大屏：最新一期轮播、粉丝、数据分析、各平台卡片（演示数据）" /></p>
 <p align="center"><sub>大屏（演示数据，<code>node src/demo.mjs</code> 就能看到）</sub></p>
@@ -51,7 +51,7 @@
 ## 一行装好
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/deepin3000/lingxi/main/scripts/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/deepin3000/video_auto_post/main/scripts/install.sh)"
 ```
 
 下载灵犀和发布助手到 `~/lingxi/`、接上发布 skill、打开安装向导；向导问完几个问题，生成配置、装好开机自启、打开各平台登录页。需要 macOS、Node.js ≥ 22.5、Google Chrome。
@@ -59,12 +59,12 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/deepin3000/lingxi/main/s
 Windows（社区贡献，感谢 [ajin558](https://github.com/ajin558)；开机自启暂未适配）：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/deepin3000/lingxi/main/scripts/install-windows.ps1 | iex"
+powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/deepin3000/video_auto_post/main/scripts/install-windows.ps1 | iex"
 ```
 
 同样下载到 `%USERPROFILE%\lingxi\`、接上发布 skill、打开安装向导，安装目录里另有 4 个双击启动器（演示 / 登录 / 体检 / 启动）。需要 Windows 10/11、Node.js ≥ 22.5、Google Chrome；缺 Git / Node 时脚本会用 winget 自动补装。开机自启暂未适配（向导里的 launchd 步骤会自动跳过），可用任务计划程序指向安装目录的 `4-start.bat` 代替。
 
-<p align="center"><img src="https://github.com/deepin3000/lingxi/releases/download/media/lingxi-install.gif" width="720" alt="一行安装演示" /></p>
+<p align="center"><img src="https://github.com/deepin3000/video_auto_post/releases/download/media/lingxi-install.gif" width="720" alt="一行安装演示" /></p>
 
 <details>
 <summary><b>手动安装</b></summary>
@@ -74,7 +74,7 @@ powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.c
 需要：macOS、Node.js ≥ 22.5（用到内置 `node:sqlite`）、Google Chrome；可选 NAS（放成片）、飞书群机器人、cloudflared。
 
 ```bash
-git clone https://github.com/deepin3000/lingxi.git && cd lingxi
+git clone https://github.com/deepin3000/video_auto_post.git && cd lingxi
 node src/demo.mjs                       # 先用假数据看看效果：http://localhost:8788/?key=demo
 node src/init.mjs                       # 安装向导：检查环境、生成 config.json、装开机自启；在专用 Chrome 里从应用商店添加灵犀发布助手、登录各平台
 node src/hub.mjs doctor                 # 登录完检查各平台登录态和上传页（不上传、不填写）
@@ -230,7 +230,7 @@ iPhone 桌面 / 锁屏常驻显示全平台粉丝、今日涨粉、最新一期�
 
 > 微信群码 7 天有效（这张 11 月 25 日前可扫），我会定期换；扫不进去就提个 Issue 喊我一声。
 
-觉得有用就点个 ⭐ Star，这是我继续改下去的动力；遇到问题直接提 [Issue](https://github.com/deepin3000/lingxi/issues)。
+觉得有用就点个 ⭐ Star，这是我继续改下去的动力；遇到问题直接提 [Issue](https://github.com/deepin3000/video_auto_post/issues)。
 
 ## Star History
 
