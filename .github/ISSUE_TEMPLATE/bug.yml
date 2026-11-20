@@ -24,4 +24,4 @@ body:
     id: env
     attributes:
       label: 环境
-      placeholder: macOS 版本 / Node 版本 / 麦田提交号
+      placeholder: macOS 版本 / Node 版本 / 灵犀提交号

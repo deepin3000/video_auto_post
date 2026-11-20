@@ -1,6 +1,6 @@
 import fs from 'node:fs'; import path from 'node:path'; import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const CFG = process.env.MAITIAN_CONFIG || path.join(ROOT, 'config.json');
+const CFG = process.env.LINGXI_CONFIG || path.join(ROOT, 'config.json');
 if (!fs.existsSync(CFG)) { console.error('还没有 config.json：先运行 node src/init.mjs（安装向导），或者 node src/demo.mjs 用假数据看看效果'); process.exit(1); }
 export const config = JSON.parse(fs.readFileSync(CFG, 'utf8'));
 
@@ -16,7 +16,7 @@ function webUrl() { try { return JSON.parse(fs.readFileSync(path.join(ROOT, 'dat
 
 export function toCard(text) {
   const lines = String(text).split('\n').map((l) => l.trim());
-  const head = lines.shift() || '麦田';
+  const head = lines.shift() || '灵犀';
   const template = (COLOR.find(([re]) => re.test(head)) || [null, 'blue'])[1];
   // 标题太长（比如「✅ 期名」）：期名放标题，后半句放副标题
   const [title, ...restHead] = head.split(/\s*[|｜]\s*(?=[^|｜]*$)/);
@@ -37,8 +37,8 @@ export function toCard(text) {
   if (!elements.length) elements.push({ tag: 'markdown', content: link(head) });
   const url = webUrl();
   elements.push({ tag: 'hr' });
-  elements.push({ tag: 'note', elements: [{ tag: 'plain_text', content: `麦田 · ${new Date().toLocaleString('zh-CN', { hour12: false, timeZone: 'Asia/Shanghai' }).slice(5, 16)}` }] });
-  if (url) elements.push({ tag: 'action', actions: [{ tag: 'button', text: { tag: 'plain_text', content: '打开麦田' }, type: 'primary', url }] });
+  elements.push({ tag: 'note', elements: [{ tag: 'plain_text', content: `灵犀 · ${new Date().toLocaleString('zh-CN', { hour12: false, timeZone: 'Asia/Shanghai' }).slice(5, 16)}` }] });
+  if (url) elements.push({ tag: 'action', actions: [{ tag: 'button', text: { tag: 'plain_text', content: '打开灵犀' }, type: 'primary', url }] });
   return { config: { wide_screen_mode: true }, header: { template, title: { tag: 'plain_text', content: title.slice(0, 80) }, ...(restHead.length ? { subtitle: { tag: 'plain_text', content: restHead.join(' ').slice(0, 80) } } : {}) }, elements };
 }
 

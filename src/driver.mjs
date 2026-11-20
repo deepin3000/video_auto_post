@@ -36,7 +36,7 @@ export async function busy() { if (mode !== 'plugin') return false; const j = aw
 
 // 商店里的插件版本还没有某个平台的适配器（比如新平台刚加、商店还在审核）：这几个平台先跳过并说明
 const split = (pub, ids) => [ids.filter(id => pub.ADAPTERS[id]), ids.filter(id => !pub.ADAPTERS[id])];
-const tooOld = (id) => { const p = pluginInfo(); return `麦田发布助手 ${p.version || ''}（${p.source === 'store' ? '商店版' : '本地'}）还不支持 ${id}，等插件更新`; };
+const tooOld = (id) => { const p = pluginInfo(); return `灵犀发布助手 ${p.version || ''}（${p.source === 'store' ? '商店版' : '本地'}）还不支持 ${id}，等插件更新`; };
 
 // 跑一批平台；onState(st) 在每次状态变化时调用，st = {id, status, logs, tabId}
 export async function runBatch(project, batch, onState, onStall) {

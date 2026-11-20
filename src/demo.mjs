@@ -1,4 +1,4 @@
-// 演示模式：不接任何平台，用一份假数据把麦田网页跑起来。
+// 演示模式：不接任何平台，用一份假数据把灵犀网页跑起来。
 //   node src/demo.mjs            生成 demo/ 目录（假配置、假数据库、假工程和封面），在 http://localhost:8788/?key=demo 打开
 //   node src/demo.mjs --reset    重新生成假数据
 // 演示数据只在 demo/ 里，不碰你的 data/hub.db 和 config.json。
@@ -8,12 +8,12 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const D = path.join(ROOT, 'demo'), PROJ = path.join(D, 'projects');
 if (process.argv.includes('--reset')) fs.rmSync(D, { recursive: true, force: true });
 fs.mkdirSync(PROJ, { recursive: true });
-const cfg = { name: '麦田 · 演示', web: { port: 8788, key: 'demo' }, rootPath: PROJ, driver: 'direct', keepAlive: [],
+const cfg = { name: '灵犀 · 演示', web: { port: 8788, key: 'demo' }, rootPath: PROJ, driver: 'direct', keepAlive: [],
   site: { name: '课程站', base: 'https://example.com' }, xHandle: 'demo' };
 fs.writeFileSync(path.join(D, 'config.json'), JSON.stringify(cfg, null, 2));
-process.env.MAITIAN_CONFIG = path.join(D, 'config.json');
-process.env.MAITIAN_DB = path.join(D, 'hub.db');
-const fresh = !fs.existsSync(process.env.MAITIAN_DB);
+process.env.LINGXI_CONFIG = path.join(D, 'config.json');
+process.env.LINGXI_DB = path.join(D, 'hub.db');
+const fresh = !fs.existsSync(process.env.LINGXI_DB);
 
 const { db, upsertEpisode, setTask, saveSnapshot, log, setMeta } = await import('./db.mjs');
 await import('./followers.mjs');   // 建 followers 表

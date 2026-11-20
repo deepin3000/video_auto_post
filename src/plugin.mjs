@@ -1,5 +1,5 @@
-// 麦田发布助手（各平台填写引擎）在哪：
-//   默认用专用 Chrome 里从 Chrome 应用商店装的那份。Chrome 会自动更新它，麦田每次发布读最新版本的代码。
+// 灵犀发布助手（各平台填写引擎）在哪：
+//   默认用专用 Chrome 里从 Chrome 应用商店装的那份。Chrome 会自动更新它，灵犀每次发布读最新版本的代码。
 //   config.plugin = 'local' 时用 config.pluginDir（插件开发者自己调试用）。
 import fs from 'node:fs'; import path from 'node:path';
 import { config } from './feishu.mjs';
@@ -34,6 +34,6 @@ export function pluginInfo() {
 
 export function pluginDir() {
   const p = pluginInfo();
-  if (!p.dir) throw new Error(`还没装麦田发布助手：运行 node src/hub.mjs login，在打开的专用 Chrome 里从应用商店点「添加至 Chrome」（${STORE_URL}）`);
+  if (!p.dir) throw new Error(`还没装灵犀发布助手：运行 node src/hub.mjs login，在打开的专用 Chrome 里从应用商店点「添加至 Chrome」（${STORE_URL}）`);
   return p.dir;
 }

@@ -1,4 +1,4 @@
-// 麦田公网隧道 → 拿到 https 地址 → 存 data/tunnel.json（飞书卡片里的「打开麦田」用它）+ 地址变了推飞书
+// 灵犀公网隧道 → 拿到 https 地址 → 存 data/tunnel.json（飞书卡片里的「打开灵犀」用它）+ 地址变了推飞书
 // 两种模式：
 //  - 固定域名（推荐）：config.tunnel = { name, hostname }，先 `cloudflared tunnel login`、`cloudflared tunnel create <name>`、
 //    `cloudflared tunnel route dns <name> <hostname>`。地址永远不变。
@@ -21,7 +21,7 @@ async function publish(base) {
   const url = named && (config.web?.access || config.web?.login === 'feishu') ? base : `${base}/?key=${key}`;   // 有登录页就不用带口令
   let prev = null; try { prev = JSON.parse(fs.readFileSync(OUT, 'utf8')).url; } catch {}
   fs.writeFileSync(OUT, JSON.stringify({ url, base, at: new Date().toISOString(), mode: named ? 'named' : 'quick' }, null, 2));
-  if (prev !== url) await notify(`🌐 麦田远程地址${named ? '（固定，不会再变）' : ''}：${url}`).catch(e => console.error(e.message));
+  if (prev !== url) await notify(`🌐 灵犀远程地址${named ? '（固定，不会再变）' : ''}：${url}`).catch(e => console.error(e.message));
 }
 let sent = false;
 const onData = async (buf) => {

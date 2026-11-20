@@ -1,4 +1,4 @@
-// 麦田下钻页的公共部分：格式化、Logo、顶栏、提示、图表
+// 灵犀下钻页的公共部分：格式化、Logo、顶栏、提示、图表
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const fmt = (n) => n == null ? '–' : Math.round(n).toLocaleString('en-US');

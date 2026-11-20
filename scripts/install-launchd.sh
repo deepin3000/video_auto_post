@@ -1,13 +1,13 @@
 #!/bin/zsh
-# 把麦田装成 macOS 开机自启服务（launchd）：守护进程 + 可选的远程访问隧道。
+# 把灵犀装成 macOS 开机自启服务（launchd）：守护进程 + 可选的远程访问隧道。
 #   scripts/install-launchd.sh            安装守护进程
 #   scripts/install-launchd.sh --tunnel   顺带安装 cloudflared 快速隧道（需要先 brew install cloudflared）
 #   scripts/install-launchd.sh --uninstall
-# 服务名前缀默认 com.maitian，可用环境变量 MAITIAN_LABEL 改。
+# 服务名前缀默认 com.lingxi，可用环境变量 LINGXI_LABEL 改。
 set -e
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 NODE=$(command -v node)
-PREFIX=${MAITIAN_LABEL:-com.maitian}
+PREFIX=${LINGXI_LABEL:-com.lingxi}
 AGENTS=~/Library/LaunchAgents
 UID_=$(id -u)
 mkdir -p "$ROOT/data" "$AGENTS"

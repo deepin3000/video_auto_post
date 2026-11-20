@@ -85,7 +85,7 @@ export async function ytSubmit(tabId, title, scheduleIso) {
   await sleep(8000);
   const text = await evaluate(tabId, `document.body.innerText`).catch(() => '');
   const link = (text.match(/https:\/\/youtu\.be\/[\w-]+/) || [''])[0];
-  // Studio 列表刷新慢：点完常常还显示「待处理」（2026-11-15 麦田开源这期），每 30 秒查一次，最多 3 分钟
+  // Studio 列表刷新慢：点完常常还显示「待处理」（2026-11-15 灵犀开源这期），每 30 秒查一次，最多 3 分钟
   let rows = null;
   for (let i = 0; i < 7; i++) {
     if (i) await sleep(30000);
@@ -111,7 +111,7 @@ const IG_USER = `(()=>{const i=[...document.querySelectorAll('a[href] img[alt]')
 const igHead = (caption) => [...firstLine(caption)].slice(0, 30).join('');
 
 // Instagram：定时内容页（/scheduled_content/，按周显示）里有没有这一期。从本周往后翻到定时所在那周
-// 定时中的 Reels 不在主页列表里（2026-11-15 麦田开源这期发现），查重必须先看这里
+// 定时中的 Reels 不在主页列表里（2026-11-15 灵犀开源这期发现），查重必须先看这里
 export async function igScheduled(caption, scheduleIso) {
   const head = igHead(caption);
   const weeks = scheduleIso ? Math.max(0, Math.ceil((Date.parse(scheduleIso) - Date.now()) / (7 * 86400e3))) + 1 : 2;

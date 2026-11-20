@@ -1,4 +1,4 @@
-// 飞书验证码登录：打开麦田 → 点「发送验证码」→ 6 位码推到飞书群 → 输入后这台设备记住 30 天。
+// 飞书验证码登录：打开灵犀 → 点「发送验证码」→ 6 位码推到飞书群 → 输入后这台设备记住 30 天。
 // 开启：config.web.login = "feishu"（需要已配 feishuWebhook）。口令 ?key= 仍然可用，作备用。
 // 安全：验证码 5 分钟有效、只能用一次、输错 5 次作废；60 秒内只能发一次、每小时最多 10 次；
 // 会话 token 随机 32 字节，库里只存哈希（data/sessions.json，不进 git）。
@@ -35,7 +35,7 @@ export async function handleLogin(req, res, u, send) {
     const code = String(crypto.randomInt(0, 1e6)).padStart(6, '0');
     pending = { hash: sha(code), at: now, tries: 0 }; sends.push(now);
     const who = ip(req), ua = String(req.headers['user-agent'] || '').match(/iPhone|iPad|Android|Macintosh|Windows/)?.[0] || '未知设备';
-    await notify(`🔐 麦田登录验证码\n验证码：${code}\n5 分钟内有效 · ${ua} · ${who}\n不是你本人在登录就忽略，别把验证码告诉别人`, { quiet: true });
+    await notify(`🔐 灵犀登录验证码\n验证码：${code}\n5 分钟内有效 · ${ua} · ${who}\n不是你本人在登录就忽略，别把验证码告诉别人`, { quiet: true });
     send(res, 200, { ok: true }); return true;
   }
   if (u.pathname === '/login/verify' && req.method === 'POST') {
@@ -52,7 +52,7 @@ export async function handleLogin(req, res, u, send) {
   return false;
 }
 
-const PAGE = `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>登录麦田</title>
+const PAGE = `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>登录灵犀</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:-apple-system,'PingFang SC',sans-serif;color:#1c1a16;padding:20px;
@@ -69,10 +69,10 @@ input:focus{border-color:#F2B21B}
 .ok{color:#2e7d32}
 </style></head><body><div class="c">
 <svg class="mm" viewBox="0 0 12 13" width="72" height="78" shape-rendering="crispEdges">${mascot()}</svg>
-<h1>麦田</h1><p>验证码会发到你的飞书群</p>
+<h1>灵犀</h1><p>验证码会发到你的飞书群</p>
 <button id="send">发送验证码</button>
 <input id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="······">
-<button id="go" disabled>进入麦田</button>
+<button id="go" disabled>进入灵犀</button>
 <div class="msg" id="msg"></div>
 </div><script>
 const $=id=>document.getElementById(id), msg=(t,ok)=>{$('msg').textContent=t;$('msg').className='msg'+(ok?' ok':'')};

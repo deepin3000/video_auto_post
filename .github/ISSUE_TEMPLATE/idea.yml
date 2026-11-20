@@ -1,5 +1,5 @@
 name: 想要的功能
-description: 你希望麦田多做点什么
+description: 你希望灵犀多做点什么
 labels: [enhancement]
 body:
   - type: textarea

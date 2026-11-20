@@ -1,5 +1,5 @@
 // 校验一期的 publish.json：文件齐全、各平台字段和字数、成片是 faststart。
-// 字段规则来自麦田发布助手的 lib/bundle.js，跟着插件一起更新。
+// 字段规则来自灵犀发布助手的 lib/bundle.js，跟着插件一起更新。
 import fs from 'node:fs'; import path from 'node:path'; import { pathToFileURL } from 'node:url';
 import { pluginDir } from './plugin.mjs';
 

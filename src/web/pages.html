@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#f5f5f7">
-<title>麦田</title>
-<meta name="apple-mobile-web-app-title" content="麦田">
+<title>灵犀</title>
+<meta name="apple-mobile-web-app-title" content="灵犀">
 <link rel="apple-touch-icon" href="/static/icon-180.png">
 <link rel="icon" href="/static/icon-180.png">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -122,7 +122,7 @@ async function vEpisode(id) {
 
 function vSystem() {
   const h = O.health, today = new Date().toLocaleDateString('zh-CN'), cur = O.episodes[0];
-  return `<div class="h1">系统</div><p class="lead">麦田自己的运行情况，和需要手动触发的操作。发布只能从命令行发起，这里没有上传入口。</p>
+  return `<div class="h1">系统</div><p class="lead">灵犀自己的运行情况，和需要手动触发的操作。发布只能从命令行发起，这里没有上传入口。</p>
   <div class="grid g4">${tile('守护进程', '运行中', '开机自启，崩溃自动拉起')}${tile('NAS', h.nas ? '已挂载' : '读不到', h.nas ? '工程目录可读' : '取链接和封面会失败')}${tile('专用浏览器', h.chrome ? '在线' : '没开', '七个平台的登录都在这里')}${tile('平台登录', Object.values(h.login).every(v => v === 'ok') ? '正常' : '有掉线', `上次体检 ${esc(h.doctorDay || '还没做')}${h.doctorDay === today ? '（今天）' : ''}`)}</div>
   ${sec('手动操作', '同一时间只跑一个')}
   <div class="panel"><div class="btns">${abtn({ type: 'doctor' }, '体检：检查七个平台登录', 'pri')}${cur ? abtn({ type: 'sync', id: cur.id }, `取「${esc(cur.nick)}」的链接`) : ''}${abtn({ type: 'metrics' }, '采流量')}${abtn({ type: 'followers' }, '采粉丝')}${abtn({ type: 'board' }, '同步知识站数据')}</div>
@@ -139,7 +139,7 @@ async function render() {
 }
 async function load() {
   try { O = await api('/api/overview'); if (!O.siteOn) PL = PL.filter(p => p !== 'zsz'); else { if (O.siteName) PN.zsz = O.siteName; if (O.siteLogo) LOGO.zsz = { img: '/site-logo' }; } F = {}; for (const r of O.followers) (F[r.platform] ||= {})[r.day] = r.total; await render(); }
-  catch (e) { if (!O) $('#app').innerHTML = `<div class="empty" style="height:60vh">连不上麦田服务（${esc(e.message)}）</div>`; }
+  catch (e) { if (!O) $('#app').innerHTML = `<div class="empty" style="height:60vh">连不上灵犀服务（${esc(e.message)}）</div>`; }
 }
 function poll() { clearInterval(timer); timer = setInterval(async () => { await load(); if (!busy()) { clearInterval(timer); timer = null; } }, 4000); }
 document.addEventListener('click', async (e) => {

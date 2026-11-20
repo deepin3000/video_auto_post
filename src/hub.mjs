@@ -29,7 +29,7 @@ function helpTip() {
   const day = new Date().toLocaleDateString('sv-SE');
   if (getMeta('learnTipDay') === day) return '';
   setMeta('learnTipDay', day);
-  return `\n\n💡 平台改版或卡住了：交流群和踩坑手册 ${GROUP_URL} ；完整教程 ${learnUrl('maitian-error')}`;
+  return `\n\n💡 平台改版或卡住了：交流群和踩坑手册 ${GROUP_URL} ；完整教程 ${learnUrl('lingxi-error')}`;
 }
 
 const args = process.argv.slice(2), cmd = args[0];
@@ -131,7 +131,7 @@ async function run() {
   if (todo.includes('x') && pj.platforms.x.mode === 'article+quote') {
     if (!articleOn()) throw new Error('这期 X 是长文模式，只在作者自己的本地插件环境里可用；把 publish.json 里 X 的 mode 去掉，按普通视频帖发');
     todo = todo.filter(i => i !== 'x');
-    if (!LOCKED.includes((getTask(ep.id, 'x') || {}).state)) setTask(ep.id, 'x', 'scheduled', '长文模式：定时前 25 分钟由麦田启动长文脚本（长文 + 视频帖引用长文）');
+    if (!LOCKED.includes((getTask(ep.id, 'x') || {}).state)) setTask(ep.id, 'x', 'scheduled', '长文模式：定时前 25 分钟由灵犀启动长文脚本（长文 + 视频帖引用长文）');
   }
 
   // 防重 1：库里已经到位的不再跑
@@ -274,8 +274,8 @@ async function metricsReport(list) {
 
 async function doctor() {
   const p = pluginInfo();
-  if (!p.dir) throw new Error(`还没装麦田发布助手：运行 node src/hub.mjs login，在专用 Chrome 里从应用商店添加（${STORE_URL}）`);
-  console.log(`麦田发布助手：${p.source === 'store' ? '商店版' : '本地'} ${p.version || ''}`);
+  if (!p.dir) throw new Error(`还没装灵犀发布助手：运行 node src/hub.mjs login，在专用 Chrome 里从应用商店添加（${STORE_URL}）`);
+  console.log(`灵犀发布助手：${p.source === 'store' ? '商店版' : '本地'} ${p.version || ''}`);
   await drv.ensure();
   const r = await drv.checkLogin(ALL);
   const lines = ALL.map(id => `${NAMES[id]}：${r[id] && r[id].ok ? '✅ 已登录，上传页正常' : `❌ ${r[id] ? r[id].reason : '没有结果'}`}`);
@@ -344,11 +344,11 @@ async function daemon() {
   console.log(`发布中控守护进程启动（${drv.mode}）`);
   // 开机后 NAS 往往比守护进程晚挂上：等一等，自己挂一次（密码在钥匙串里），5 分钟还不行再报警
   { let ok = false; for (let i = 0; i < 10 && !(ok = await ensureNas()); i++) await drv.sleep(30000);
-    if (ok) console.log('NAS 可读'); else await notify('⚠️ 麦田守护进程启动 5 分钟后仍读不到 NAS（已尝试自动挂载），取链接和封面会失败，请检查 NAS 是否开机'); }
+    if (ok) console.log('NAS 可读'); else await notify('⚠️ 灵犀守护进程启动 5 分钟后仍读不到 NAS（已尝试自动挂载），取链接和封面会失败，请检查 NAS 是否开机'); }
   const MIN = 60000, every = (key, ms) => { const last = +getMeta(key) || 0; if (Date.now() - last < ms) return false; setMeta(key, Date.now()); return true; };
   for (;;) {
     try {
-      if (!(await ensureNas()) && every('nasAlert', 60 * MIN)) await notify('⚠️ 麦田读不到 NAS，已尝试自动挂载但没成功');
+      if (!(await ensureNas()) && every('nasAlert', 60 * MIN)) await notify('⚠️ 灵犀读不到 NAS，已尝试自动挂载但没成功');
       else if (every('scanPlans', 30 * MIN)) { const n = scanPlans(); if (n.length) await notify(`🗓 分发计划新增 ${n.length} 期\n${n.join('\n')}`); }
       for (const ep of episodes()) {
         if (Date.now() - Date.parse(ep.created_at) > 14 * 86400e3) continue;
@@ -454,7 +454,7 @@ try {
   else if (cmd === 'login') {
     const p = pluginInfo(), needStore = p.source !== 'local' && !p.dir;
     await drv.openForLogin([...(needStore ? [STORE_URL] : []), ...ALL.map(i => LOGIN_PAGES[i])]);
-    if (needStore) console.log(`第一步：在专用 Chrome 里的应用商店页面点「添加至 Chrome」，装上麦田发布助手（之后 Chrome 会自动更新它）`);
+    if (needStore) console.log(`第一步：在专用 Chrome 里的应用商店页面点「添加至 Chrome」，装上灵犀发布助手（之后 Chrome 会自动更新它）`);
     console.log(`专用 Chrome 已打开 ${ALL.length} 个平台页面，登录完运行 hub doctor 检查`);
   }
   else if (cmd === 'followers') { await drv.ensure(); console.log(JSON.stringify(await collectFollowers(opt('--only') ? opt('--only').split(',') : null, opt('--skip') ? opt('--skip').split(',') : []), null, 1)); }

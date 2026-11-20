@@ -1,4 +1,4 @@
-// 单期复盘（发布后第 1/3/7 天）和周报：只用麦田自己攒的数据（流量采样、每日流量、粉丝、站点）
+// 单期复盘（发布后第 1/3/7 天）和周报：只用灵犀自己攒的数据（流量采样、每日流量、粉丝、站点）
 import { db, episodes, getTasks, NAMES } from './db.mjs';
 import { SITE } from './site.mjs';
 
@@ -22,7 +22,7 @@ function at(eid, p, t) {
   return r ? { views: r.views || 0, likes: r.likes || 0, comments: r.comments || 0, favorites: r.favorites || 0, shares: r.shares || 0 } : null;
 }
 const inter = (m) => m ? m.likes + m.comments + m.favorites + m.shares : 0;
-// 有没有这一期在这个年龄附近的真实数据（麦田上线前的期没有，不能硬比）
+// 有没有这一期在这个年龄附近的真实数据（灵犀上线前的期没有，不能硬比）
 const hasDataBy = (eid, t) => !!db.prepare('SELECT 1 FROM metrics WHERE episode_id=? AND day<=? LIMIT 1').get(eid, dayOf(t));
 
 function snapshot(ep, ageDays) {
@@ -99,10 +99,10 @@ export function weekly(now = Date.now()) {
   const fans = fansGain(from, to), fansP = fansGain(pFrom, pTo);
   const site = SITE ? siteSum(from, to) : null, siteP = SITE ? siteSum(pFrom, pTo) : null;
   const vs = (a, b) => b ? `（上周 ${fmt(b)}，${a >= b ? '+' : ''}${pct(a - b, b, 0)}）` : '';
-  const L = [`🗓 麦田周报｜${dayOf(from).slice(5)} ～ ${dayOf(to).slice(5)}`];
+  const L = [`🗓 灵犀周报｜${dayOf(from).slice(5)} ～ ${dayOf(to).slice(5)}`];
   L.push(`发了 ${pubs.length} 期${pubs.length ? '：' + pubs.map(e => `「${nickOf(e)}」`).join('、') : ''}`);
   const hasM = db.prepare('SELECT 1 FROM metrics WHERE day>=? AND day<=? LIMIT 1').get(dayOf(from), dayOf(to));
-  L.push(hasM ? `全平台新增播放 ${fmt(cur.sum)}${vs(cur.sum, prv.sum)}` : '这一周麦田还没有流量数据（从接入麦田那天起才有）');
+  L.push(hasM ? `全平台新增播放 ${fmt(cur.sum)}${vs(cur.sum, prv.sum)}` : '这一周灵犀还没有流量数据（从接入灵犀那天起才有）');
   L.push(`各平台涨粉 ${fans.sum >= 0 ? '+' : ''}${fmt(fans.sum)}${vs(fans.sum, fansP.sum)}`);
   if (site && site.reg != null) L.push(`${SITE.name}：新注册 ${fmt(site.reg)}${vs(site.reg, siteP && siteP.reg)}｜新会员 ${fmt(site.vip)}｜收入 ¥${fmt(site.revenue)}`);
   L.push('');

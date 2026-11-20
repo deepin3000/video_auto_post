@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const DB_PATH = process.env.MAITIAN_DB || path.join(ROOT, 'data', 'hub.db');
+const DB_PATH = process.env.LINGXI_DB || path.join(ROOT, 'data', 'hub.db');
 fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
 export const db = new DatabaseSync(DB_PATH);
 db.exec('PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000;');

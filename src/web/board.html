@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#f5f5f7">
-<title>麦田</title>
-<meta name="apple-mobile-web-app-title" content="麦田">
+<title>灵犀</title>
+<meta name="apple-mobile-web-app-title" content="灵犀">
 <link rel="apple-touch-icon" href="/static/icon-180.png">
 <link rel="icon" href="/static/icon-180.png">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -211,7 +211,7 @@ function tick() {
 }
 async function load() {
   try { const r = await fetch('/api/overview'); if (!r.ok) throw new Error(r.status); O = await r.json(); if (!O.siteOn) PL = PL.filter(p => p !== 'zsz'); else { if (O.siteName) PN.zsz = O.siteName; if (O.siteLogo) LOGO.zsz = { img: '/site-logo' }; } render(); }
-  catch (e) { if (!O) $('#screen').innerHTML = `<div class="empty">连不上麦田服务（${esc(e.message)}）</div>`; else console.error(e); }
+  catch (e) { if (!O) $('#screen').innerHTML = `<div class="empty">连不上灵犀服务（${esc(e.message)}）</div>`; else console.error(e); }
 }
 const tip = $('#tip');
 document.addEventListener('mousemove', (e) => { const t = e.target.closest && e.target.closest('[data-tip]'); if (!t) { tip.style.display = 'none'; return; } tip.textContent = t.dataset.tip; tip.style.display = 'block'; const w = tip.offsetWidth; tip.style.left = Math.min(innerWidth - w - 8, e.clientX + 14) + 'px'; tip.style.top = Math.max(8, e.clientY - 34) + 'px'; });

@@ -1,5 +1,5 @@
 // 专用 Chrome 的直连驱动：用调试端口实现插件代码依赖的那几个 chrome.* 接口，
-// 这样 麦田发布助手（插件）lib 下的适配器不用改就能在中控进程里跑。
+// 这样 灵犀发布助手（插件）lib 下的适配器不用改就能在中控进程里跑。
 import { spawn, execFileSync } from 'node:child_process';
 import os from 'node:os'; import path from 'node:path'; import fs from 'node:fs';
 import { config } from './feishu.mjs';
